@@ -1,14 +1,15 @@
 import React from "react";
 import s from './Post.module.css';
 
-const Post = () => {
+const Post = (props) => {
+ //   debugger;
     return (
 
         <div className={s.item}>
             <img src="https://sunmag.me/wp-content/uploads/2019/11/sunmag-001-small-avatar.png"/>
-            Post1
+            {props.message}
             <div>
-                <span>like</span>
+                <span>like {props.like_counts}</span>
             </div>
         </div>
     )

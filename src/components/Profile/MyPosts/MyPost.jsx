@@ -10,9 +10,9 @@ const MyPost = () => {
                 <button>Add post</button>
             </div>
             <div className={s.posts}>
-                <Post/>
-                <Post/>
-                <Post/>
+                <Post message="Hello!" like_counts="15"/>
+                <Post message="Hello! What's your name?" like_counts="4"/>
+                <Post message="My name is Igor. And you?" like_counts="7"/>
             </div>
         </div>
 
