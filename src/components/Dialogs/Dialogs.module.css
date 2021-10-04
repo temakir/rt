@@ -9,15 +9,40 @@
     padding: 10px;
 }
 
-.dialogItems .active {
+.dialog .active {
     color: chartreuse;
 }
 
 .messages {
     padding: 10px;
+    border: solid;
+    border-color: aliceblue;
+    background-color: #0e80d7;
 }
 
 .messages .message {
 
+    padding: 10px;
+
 }
 
+.left {
+    text-align: start;
+}
+.right {
+    text-align: end;
+}
+.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+
+}
+
+
+.dialogItems img {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+
+}

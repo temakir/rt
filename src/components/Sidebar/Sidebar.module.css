@@ -1,0 +1,22 @@
+.sidebar {
+    grid-area: m;
+    background-color: burlywood;
+    padding: 20px;
+
+
+}
+.sidebar img {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+}
+
+.friendsTitle {
+    font-size: 25px;
+}
+
+.friends {
+display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+}
