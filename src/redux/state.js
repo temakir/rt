@@ -1,3 +1,5 @@
+import {rendererEntireTree} from "../render";
+
 let state = {
     profilePage: {
         posts: [
@@ -28,6 +30,19 @@ let state = {
         {name: "Viktor", id: "3", avatar: "https://avatarko.ru/img/kartinka/25/Elsa_24353.jpg"}
 
     ]
+}
+
+export let addPost = (addMessage) => {
+
+    let newPost = {
+        message: addMessage,
+        id: 5,
+        like_counts: 0
+    };
+    state.profilePage.posts.push(newPost)
+    rendererEntireTree(state, addPost);
+
+
 }
 
 export default state;
