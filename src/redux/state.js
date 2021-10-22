@@ -15,18 +15,29 @@ let state = {
             {message: "I'm watch TV.", id: "3", align: "left"},
             {message: "Ok", id: "4", align: "myMessage"},
             {message: "By", id: "5", align: "left"}],
+        newPostTextDialog: 'proooobe',
         dialogData: [
-            {name: "Dmitry", id: "1", avatar: "https://avatarko.ru/img/kartinka/25/multfilm_sobaka_Griffins_Brian_24619.jpg"
+            {
+                name: "Dmitry",
+                id: "1",
+                avatar: "https://avatarko.ru/img/kartinka/25/multfilm_sobaka_Griffins_Brian_24619.jpg"
             },
             {name: "Alex", id: "2", avatar: "https://avatarko.ru/img/kartinka/12/multfilm_11778.jpg"},
             {name: "Viktor", id: "3", avatar: "https://avatarko.ru/img/kartinka/25/Elsa_24353.jpg"},
             {name: "Roman", id: "4", avatar: "https://avatarko.ru/img/kartinka/27/multfilm_glaza_26136.jpg"},
-            {name: "Valentina", id: "5", avatar: "https://avatarko.ru/img/kartinka/33/poni_yagoda_klubnika_multfilm_33540.jpg"
+            {
+                name: "Valentina",
+                id: "5",
+                avatar: "https://avatarko.ru/img/kartinka/33/poni_yagoda_klubnika_multfilm_33540.jpg"
             }
         ]
     },
     sidebar: [
-        {name: "Dmitry", id: "1", avatar: "https://avatarko.ru/img/kartinka/25/multfilm_sobaka_Griffins_Brian_24619.jpg"},
+        {
+            name: "Dmitry",
+            id: "1",
+            avatar: "https://avatarko.ru/img/kartinka/25/multfilm_sobaka_Griffins_Brian_24619.jpg"
+        },
         {name: "Alex", id: "2", avatar: "https://avatarko.ru/img/kartinka/12/multfilm_11778.jpg"},
         {name: "Viktor", id: "3", avatar: "https://avatarko.ru/img/kartinka/25/Elsa_24353.jpg"}
 
@@ -34,7 +45,6 @@ let state = {
 }
 
 export let addPost = () => {
-
     let newPost = {
         message: state.profilePage.newPostText,
         id: 5,
@@ -42,11 +52,26 @@ export let addPost = () => {
     };
     state.profilePage.posts.push(newPost)
     state.profilePage.newPostText = '';
-    rendererEntireTree(state, addPost, updateNewPostText);
+    rendererEntireTree(state, addPost, updateNewPostText, addPostDialogs, updateNewPostTextDialogs);
 }
 export let updateNewPostText = (newText) => {
-state.profilePage.newPostText = newText;
-rendererEntireTree(state, addPost, updateNewPostText);
+    state.profilePage.newPostText = newText;
+    rendererEntireTree(state, addPost, updateNewPostText, addPostDialogs, updateNewPostTextDialogs);
+}
+
+export let addPostDialogs = () => {
+    let newPost = {
+        message: state.dialogsPage.newPostTextDialog,
+        id: 5,
+        align: "myMessage"
+    };
+    state.dialogsPage.messageData.push(newPost)
+    state.dialogsPage.newPostTextDialog = '';
+    rendererEntireTree(state, addPost, updateNewPostText, addPostDialogs, updateNewPostTextDialogs);
+}
+export let updateNewPostTextDialogs = (newText) => {
+    state.dialogsPage.newPostTextDialog = newText;
+    rendererEntireTree(state, addPost, updateNewPostText, addPostDialogs, updateNewPostTextDialogs);
 }
 
 export default state;

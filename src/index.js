@@ -1,9 +1,9 @@
 import reportWebVitals from './reportWebVitals';
 import {rendererEntireTree} from "./render";
-import state, {addPost, updateNewPostText} from "./redux/state";
+import state, {addPost, addPostDialogs, updateNewPostText, updateNewPostTextDialogs} from "./redux/state";
 
 
-rendererEntireTree(state, addPost, updateNewPostText);
+rendererEntireTree(state, addPost, updateNewPostText, addPostDialogs, updateNewPostTextDialogs);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
