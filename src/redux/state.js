@@ -1,5 +1,6 @@
-import {rendererEntireTree} from "../render";
-
+let rendererEntireTree = () => {
+    console.log('State was changed')
+}
 let state = {
     profilePage: {
         posts: [
@@ -43,8 +44,9 @@ let state = {
 
     ]
 }
+window.state = state;
 
-export let addPost = () => {
+export const addPost = () => {
     let newPost = {
         message: state.profilePage.newPostText,
         id: 5,
@@ -52,14 +54,14 @@ export let addPost = () => {
     };
     state.profilePage.posts.push(newPost)
     state.profilePage.newPostText = '';
-    rendererEntireTree(state, addPost, updateNewPostText, addPostDialogs, updateNewPostTextDialogs);
+    rendererEntireTree(state);
 }
-export let updateNewPostText = (newText) => {
+export const updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText;
-    rendererEntireTree(state, addPost, updateNewPostText, addPostDialogs, updateNewPostTextDialogs);
+    rendererEntireTree(state);
 }
 
-export let addPostDialogs = () => {
+export const addPostDialogs = () => {
     let newPost = {
         message: state.dialogsPage.newPostTextDialog,
         id: 5,
@@ -67,11 +69,16 @@ export let addPostDialogs = () => {
     };
     state.dialogsPage.messageData.push(newPost)
     state.dialogsPage.newPostTextDialog = '';
-    rendererEntireTree(state, addPost, updateNewPostText, addPostDialogs, updateNewPostTextDialogs);
+    rendererEntireTree(state);
 }
-export let updateNewPostTextDialogs = (newText) => {
+export const updateNewPostTextDialogs = (newText) => {
     state.dialogsPage.newPostTextDialog = newText;
-    rendererEntireTree(state, addPost, updateNewPostText, addPostDialogs, updateNewPostTextDialogs);
+    rendererEntireTree(state);
 }
+
+export const subscribe = (observer) => {
+    rendererEntireTree = observer
+}
+
 
 export default state;
