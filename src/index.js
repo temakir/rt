@@ -9,10 +9,7 @@ let rendererEntireTree = (state) => {
         <BrowserRouter>
 
             <App state={state}
-                 addPost={store.addPost.bind(store)}
-                 updateNewPostText={store.updateNewPostText.bind(store)}
-                 addPostDialogs={store.addPostDialogs.bind(store)}
-                 updateNewPostTextDialogs={store.updateNewPostTextDialogs.bind(store)}
+                 dispatch={store.dispatch.bind(store)}
             />
         </BrowserRouter>,
         document.getElementById('root')

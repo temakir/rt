@@ -1,5 +1,11 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const  ADD_POST_DIALOGS = 'ADD-POST-DIALOGS';
+const UPDATE_NEW_POST_TEXT_DIALOGS = 'UPDATE-NEW-POST-TEXT-DIALOGS';
+
+
 let store = {
-    callSubscribe() {
+    _callSubscriber() {
         console.log('State was changed')
     },
     _state: {
@@ -45,45 +51,49 @@ let store = {
 
         ]
     },
-    getState () {
+
+    getState() {
         return this._state;
     },
-    addPost() {
-        let newPost = {
-            message: this._state.profilePage.newPostText,
-            id: 5,
-            like_counts: 0
-        };
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = '';
-        this.callSubscribe(this.getState());
-    },
-
-    updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText;
-        this.callSubscribe(this.getState());
-    },
-
-    addPostDialogs() {
-        let newPost = {
-            message: this._state.dialogsPage.newPostTextDialog,
-            id: 5,
-            align: "myMessage"
-        };
-        this._state.dialogsPage.messageData.push(newPost)
-        this._state.dialogsPage.newPostTextDialog = '';
-        this.callSubscribe(this.getState());
-    },
-
-    updateNewPostTextDialogs(newText) {
-        this._state.dialogsPage.newPostTextDialog = newText;
-        this.callSubscribe(this.getState());
-    },
-
     subscribe(observer) {
-        this.callSubscribe = observer
+        this._callSubscriber = observer
+    },
+
+
+    dispatch(action) {
+        if (action.type === ADD_POST) {
+            let newPost = {
+                message: this._state.profilePage.newPostText,
+                id: 5,
+                like_counts: 0
+            };
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this.getState());
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this.getState());
+        } else if (action.type === 'ADD-POST-DIALOGS') {
+            let newPost = {
+                message: this._state.dialogsPage.newPostTextDialog,
+                id: 5,
+                align: "myMessage"
+            };
+            this._state.dialogsPage.messageData.push(newPost)
+            this._state.dialogsPage.newPostTextDialog = '';
+            this._callSubscriber(this.getState());
+        }else if (action.type === 'UPDATE-NEW-POST-TEXT-DIALOGS') {
+            this._state.dialogsPage.newPostTextDialog = action.newTextDialog;
+            this._callSubscriber(this.getState());
+        }
     }
+
 }
+
+export const addPostActionCreator = () => ({type: ADD_POST});
+export const onPageChangeActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
+export const addPostDialogsActionCreator = () => ({type: ADD_POST_DIALOGS});
+export const updateNewPostTextDialogsActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT_DIALOGS,newTextDialog: text});
 
 window.store = store;
 

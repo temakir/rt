@@ -1,6 +1,7 @@
 import React from "react";
 import s from './MyPost.module.css';
 import Post from "./Post/Post";
+import {addPostActionCreator, onPageChangeActionCreator} from "../../../redux/state";
 
 const MyPost = (props) => {
     const postsElements = props.posts
@@ -9,12 +10,14 @@ const MyPost = (props) => {
     let addPostElement = React.createRef();
 
     let addPost = () => {
-        props.addPost()
+        // props.addPost()
+        props.dispatch(addPostActionCreator())
     }
 
     let onPageChange = () => {
         let text = addPostElement.current.value;
-        props.updateNewPostText(text)
+        //props.updateNewPostText(text)
+        props.dispatch(onPageChangeActionCreator(text))
     }
 
     return (
