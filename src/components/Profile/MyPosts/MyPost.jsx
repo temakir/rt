@@ -7,15 +7,15 @@ const MyPost = (props) => {
     const postsElements = props.posts
         .map(m => <Post message={m.message} like_counts={m.like_counts}/>)
 
-    let addPostElement = React.createRef();
+  //  let addPostElement = React.createRef();
 
     let addPost = () => {
         // props.addPost()
         props.dispatch(addPostActionCreator())
     }
 
-    let onPageChange = () => {
-        let text = addPostElement.current.value;
+    let onPageChange = (e) => {
+        let text = e.target.value;
         //props.updateNewPostText(text)
         props.dispatch(onPageChangeActionCreator(text))
     }
@@ -25,7 +25,7 @@ const MyPost = (props) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea onChange={onPageChange} ref={addPostElement}
+                    <textarea onChange={onPageChange}
                               value={props.newPostText}/>
                 </div>
                 <div>

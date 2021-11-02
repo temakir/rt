@@ -23,7 +23,7 @@ let store = {
                 {message: "I'm watch TV.", id: "3", align: "left"},
                 {message: "Ok", id: "4", align: "myMessage"},
                 {message: "By", id: "5", align: "left"}],
-            newPostTextDialog: 'proooobe',
+            newPostTextDialog: '',
             dialogData: [
                 {
                     name: "Dmitry",

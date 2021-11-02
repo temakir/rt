@@ -13,15 +13,15 @@ const Dialogs = (props) => {
     let messagesElements = props.state.messageData.map(message => <Message message={message.message}
                                                                            align={message.align}/>);
 
-    let addPostElement = React.createRef();
+    //   let addPostElement = React.createRef();
 
     let addPost = () => {
         // props.addPostDialogs()
         props.dispatch(addPostDialogsActionCreator())
     }
 
-    let onDialogChange = () => {
-        let text = addPostElement.current.value;
+    let onDialogChange = (e) => {
+        let text = e.target.value;
         // props.updateNewPostTextDialogs(text)
         props.dispatch(updateNewPostTextDialogsActionCreator(text))
     }
@@ -33,8 +33,9 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
-                <textarea ref={addPostElement} onChange={onDialogChange}
-                          value={props.state.newPostTextDialog}></textarea>
+                <textarea onChange={onDialogChange}
+                          value={props.state.newPostTextDialog}
+                          placeholder='Enter your message'/>
                 <div>
                     <button onClick={addPost}>Add post</button>
                 </div>
