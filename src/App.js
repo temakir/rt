@@ -8,18 +8,18 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
 
 
-const App = (props) => {
-debugger;
+const App = () => {
+    debugger;
     return (
         <div className="app-wrapper">
             <Header/>
             <Navbar/>
-            <SidebarContainer store={props.store}/>
+            <SidebarContainer/>
             <div className="app-wrapper-content">
 
                 <Route path="/profile"
-                       render={() => <Profile store={props.store}/>}/>
-                <Route path="/dialogs" render={() => <DialogsContainer store={props.store}/>}/>
+                       render={() => <Profile/>}/>
+                <Route path="/dialogs" render={() => <DialogsContainer/>}/>
 
                 <Route path="/news"/>
                 <Route path="/music"/>

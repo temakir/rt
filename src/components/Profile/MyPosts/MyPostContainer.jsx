@@ -3,19 +3,27 @@ import s from './MyPost.module.css';
 import Post from "./Post/Post";
 import {addPostActionCreator, onPageChangeActionCreator} from "../../../redux/profilePage-reducer";
 import MyPost from "./MyPost";
+import StoreContext from "../../../StoreContext1";
 
-const MyPostContainer = (props) => {
+const MyPostContainer = () => {
 
-    let state = props.store.getState();
-    let addPost = () => {
-        props.store.dispatch(addPostActionCreator())
-    }
 
-    let onPageChange = (text) => {
-        props.store.dispatch(onPageChangeActionCreator(text))
-    }
+    return <StoreContext.Consumer>
+        {(store) => {
+            let state = store.getState();
+            let addPost = () => {
+                store.dispatch(addPostActionCreator())
+            }
 
-    return <MyPost addPost={addPost} updateNewPostText={onPageChange}
-                   posts={state.profilePage.posts} newPostText={state.profilePage.newPostText}/>
+            let onPageChange = (text) => {
+                store.dispatch(onPageChangeActionCreator(text))
+            }
+            return <MyPost addPost={addPost} updateNewPostText={onPageChange}
+                           posts={state.profilePage.posts}
+                           newPostText={state.profilePage.newPostText}/>
+        }
+        }
+
+    </StoreContext.Consumer>
 }
 export default MyPostContainer;
