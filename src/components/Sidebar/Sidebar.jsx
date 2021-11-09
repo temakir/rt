@@ -1,18 +1,11 @@
 import React from "react";
 import s from './Sidebar.module.css';
+import FriendsSidebar from "./FriendsSidebar/FriendsSidebar";
 
 /*import {NavLink} from "react-router-dom";*/
 
-const FriendsSidebar = (props) => {
-    return (
-        <div>
-            <img src={props.avatar}/>
-            <div>{props.name}</div>
-        </div>)
-}
-
 const Sidebar = (props) => {
-    let friendsElements = props.state
+    let friendsElements = props.sidebar
         .map(friend => <FriendsSidebar avatar={friend.avatar} name={friend.name} id={friend.id}/>)
 
     return (
