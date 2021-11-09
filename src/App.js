@@ -18,7 +18,7 @@ debugger;
             <div className="app-wrapper-content">
 
                 <Route path="/profile"
-                       render={() => <Profile state={props.state.profilePage} dispatch={props.dispatch}/>}/>
+                       render={() => <Profile store={props.store}/>}/>
                 <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage}
                                                               dispatch={props.dispatch}/>}/>
 
