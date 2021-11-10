@@ -9,7 +9,7 @@ import SidebarContainer from "./components/Sidebar/SidebarContainer";
 
 
 const App = () => {
-    debugger;
+
     return (
         <div className="app-wrapper">
             <Header/>

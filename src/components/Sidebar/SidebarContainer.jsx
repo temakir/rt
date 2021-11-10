@@ -1,14 +1,19 @@
 import React from "react";
 import Sidebar from "./Sidebar";
-import StoreContext from "../../StoreContext1";
+import {connect} from "react-redux";
 
-/*import {NavLink} from "react-router-dom";*/
 
-const SidebarContainer = () => {
-
-    return <StoreContext.Consumer>
-        {(store) => <Sidebar sidebar={store.getState().sidebar}/>
-        }
-    </StoreContext.Consumer>
+let mapStateToProps = (state) => {
+    return {
+        sidebar: state.sidebar
+    }
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+const SidebarContainer = connect(mapStateToProps, mapDispatchToProps)(Sidebar)
 export default SidebarContainer;
