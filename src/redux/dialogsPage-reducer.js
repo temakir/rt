@@ -30,19 +30,24 @@ let initialiseStore =
 
 const dialogsPageReducer = (state  = initialiseStore, action) => {
     switch (action.type) {
-        case ADD_POST_DIALOGS:
+        case ADD_POST_DIALOGS: {
             let newPost = {
                 message: state.newPostTextDialog,
                 id: 5,
                 align: "myMessage"
             };
-            state.messageData.push(newPost)
-            state.newPostTextDialog = '';
-            return state;
+            let stateCopy = {...state}
+            stateCopy.messageData = [...state.messageData]
+            stateCopy.messageData.push(newPost)
+            stateCopy.newPostTextDialog = '';
+            return stateCopy;
+        }
 
-        case UPDATE_NEW_POST_TEXT_DIALOGS:
-            state.newPostTextDialog = action.newTextDialog;
-            return state;
+        case UPDATE_NEW_POST_TEXT_DIALOGS: {
+            let stateCopy = {...state}
+            stateCopy.newPostTextDialog = action.newTextDialog;
+            return stateCopy;
+        }
 
         default:
             return state
