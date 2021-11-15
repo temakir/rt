@@ -14,20 +14,21 @@ const profilePageReducer = (state = initialiseStore, action) => {
         case ADD_POST: {
             let newPost = {
                 message: state.newPostText,
-                id: 5,
+                id: state.posts.length+1,
                 like_counts: 0
             };
-            let stateCopy = {...state};
-            stateCopy.posts = [...state.posts]
-            stateCopy.posts.push(newPost);
-            stateCopy.newPostText = '';
-            return stateCopy;
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText: ''
+            };
         }
 
         case UPDATE_NEW_POST_TEXT: {
-            let stateCopy = {...state};
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+            return {
+                ...state,
+                newPostText: action.newText
+            };
         }
 
         default :

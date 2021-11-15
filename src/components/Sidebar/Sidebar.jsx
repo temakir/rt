@@ -6,7 +6,7 @@ import FriendsSidebar from "./FriendsSidebar/FriendsSidebar";
 
 const Sidebar = (props) => {
     let friendsElements = props.sidebar
-        .map(friend => <FriendsSidebar avatar={friend.avatar} name={friend.name} id={friend.id}/>)
+        .map(friend => <FriendsSidebar avatar={friend.avatar} key={friend.id} name={friend.name} id={friend.id}/>)
 
     return (
         <div className={s.sidebar}>
