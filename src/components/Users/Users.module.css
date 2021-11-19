@@ -1,0 +1,8 @@
+.userslist {
+    display: grid;
+    grid-template-columns: 2fr 10fr 2fr;
+}
+ .photoUserList {
+     width: 100px;
+     height: 100px;
+ }
