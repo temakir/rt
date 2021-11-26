@@ -5,6 +5,7 @@ import emptyAvatar from "../../assets/images/emptyAvatar.png";
 
 const Users = (props) => {
 
+    let getUsers = () => {
     if (props.users.length === 0) {
 
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
@@ -39,9 +40,11 @@ const Users = (props) => {
                 location: {country: 'Belarys', city: 'Minsk'}
             }
         ]*/
-    }
+    }}
     return (
+
         <div>
+            <button onClick={getUsers}>Get Users</button>
             {props.users.map(u =>
                 <div className={s.userslist} key={u.id}>
 
