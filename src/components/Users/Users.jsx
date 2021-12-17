@@ -1,6 +1,7 @@
 import s from "./Users.module.css";
 import emptyAvatar from "../../assets/images/emptyAvatar.png";
 import React from "react";
+import {NavLink} from "react-router-dom";
 
 
 const Users = (props) => {
@@ -11,37 +12,39 @@ const Users = (props) => {
         page.push(i)
     }
 
-        return <div>
-            <div className={s.pagination}>
-                {page.map(p => <span className={props.currentPage === p && s.selectedPage}
-                                     onClick={() => {props.onPageChanged(p)}}>{p} </span>)}
-            </div>
-            {props.users.map(u =>
-                <div className={s.userslist} key={u.id}>
+    return <div>
+        <div className={s.pagination}>
+            {page.map(p => <span className={props.currentPage === p && s.selectedPage}
+                                 onClick={() => {props.onPageChanged(p)}}>{p} </span>)}
+        </div>
+        {props.users.map(u =>
+            <div className={s.userslist} key={u.id}>
 
-                    <div>
+                <div>
+                    <NavLink to={"/profile/" + u.id}>
                         <img alt='avatar' src={u.photos.small != null ? u.photos.small : emptyAvatar}
                              className={s.photoUserList}/>
-                        {u.followed
-                            ? <button onClick={() => {props.unfollow(u.id)}}>Unfollow</button>
-                            : <button onClick={() => {props.follow(u.id)}}>Follow</button>
+                    </NavLink>
+                    {u.followed
+                        ? <button onClick={() => {props.unfollow(u.id)}}>Unfollow</button>
+                        : <button onClick={() => {props.follow(u.id)}}>Follow</button>
 
-                        }
-                    </div>
-                    <div>
-                        <div>{u.name}</div>
-                        <div>{u.status}</div>
-                    </div>
-                    <div>
-                        <div>{'u.location.city'}</div>
-                        <div>{'u.location.country'}</div>
-                    </div>
-
+                    }
                 </div>
-            )
-            }
+                <div>
+                    <div>{u.name}</div>
+                    <div>{u.status}</div>
+                </div>
+                <div>
+                    <div>{'u.location.city'}</div>
+                    <div>{'u.location.country'}</div>
+                </div>
 
-        </div>
+            </div>
+        )
+        }
+
+    </div>
 
 }
 export default Users;
