@@ -11,6 +11,7 @@ import {
 import Users from "./Users";
 import Preload from "../common/Preload/Preload";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 class UsersAPIComponent extends React.Component {
 
@@ -54,35 +55,12 @@ let mapStateToProps = (state) => {
         followInProgress: state.usersPage.followInProgress
     }
 }
-/*let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            dispatch(followAC(userId))
-        },
-        unfollow: (userId) => {
-            dispatch(unfollowAC(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        setTotalUsersCount: (totalCount) => {
-            dispatch(setTotalUsersCountAC(totalCount))
-        },
-        toggleFetching: (isFetching) => {
-            dispatch(setToggleFetchingAC(isFetching))
-        }
-    }
-}*/
 
-let authRedirectComponent = withAuthRedirect(UsersAPIComponent);
-
-const UsersContainer = connect(mapStateToProps, {
-    followSuccess, unfollowSuccess, setUsers,
-    setCurrentPage, setTotalUsersCount, setToggleFetching,
-    setToggleFollowingProgress, getUsers, followToggle
-})(authRedirectComponent)
-
-export default UsersContainer;
+export default compose (
+    connect(mapStateToProps, {
+        followSuccess, unfollowSuccess, setUsers,
+        setCurrentPage, setTotalUsersCount, setToggleFetching,
+        setToggleFollowingProgress, getUsers, followToggle
+    }),
+    withAuthRedirect
+)(UsersAPIComponent);
