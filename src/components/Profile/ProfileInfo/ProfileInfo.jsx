@@ -1,6 +1,7 @@
 import React from "react";
 import s from './ProfileInfo.module.css';
 import Preload from "../../common/Preload/Preload";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -22,7 +23,7 @@ const ProfileInfo = (props) => {
                 </div>
                 <div>Ищу работу:
                     {props.profile.lookingForAJob ? "YES" : "NO"}, {props.profile.lookingForAJobDescription}</div>
-                Avatar+description
+                <ProfileStatus status={"Hello, my friends"}/>
             </div>
         </div>
 
