@@ -11,8 +11,10 @@ const ProfileInfo = (props) => {
     return (
         <div>
             <div>
+{/*
                 <img
                     src="https://img.freepik.com/free-photo/beach-sea-sand-and-palm-in-summer-day_63047-1260.jpg?size=626&ext=jpg" alt=''/>
+*/}
             </div>
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.small} alt="Avatar"/>
@@ -23,7 +25,7 @@ const ProfileInfo = (props) => {
                 </div>
                 <div>Ищу работу:
                     {props.profile.lookingForAJob ? "YES" : "NO"}, {props.profile.lookingForAJobDescription}</div>
-                <ProfileStatus status={"Hello, my friends"}/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
 
